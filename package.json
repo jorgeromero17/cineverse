@@ -1,0 +1,26 @@
+{
+  "name": "cineverse",
+  "version": "1.0.0",
+  "description": "CineVerse is my personalized project, created to enhance and apply my skills in web development, API usage, and interface design. This application serves as a hands-on platform, offering me the opportunity to delve into the intricacies of The Movie Database (TMDB) API and refine my abilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeromero17/cineverse.git"
+  },
+  "keywords": [
+    "movie",
+    "app"
+  ],
+  "author": "Jorge Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgeromero17/cineverse/issues"
+  },
+  "homepage": "https://github.com/jorgeromero17/cineverse#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

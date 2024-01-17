@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/src/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body class="bg-deepNavy font-poppins">
+    <header class="h-[65vh] bg-spiderverse bg-cover bg-top">
+        <div class="h-full flex flex-col justify-center items-center bg-gradient-to-t from-deepNavy via-20% to-deepNavyOpacity">
+            <h1 class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-7xl text-opacity-0 bg-clip-text mt-2">Welcome.</h1>
+            <h2 class="font-regular text-pureWhite text-2xl mt-2">Millions of movies waiting for you. Explore now and find your next cinematic escape!</h2>
+            <div class="flex justify-center w-[100%] mt-8">
+                <input type="text" class="h-10 2xl:w-[40%] m-0 px-3 text-seaGray placeholder:text-mistyGray outline-none" placeholder="Search for a movie..">
+                <button class="text-pureWhite font-semibold text-lg bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen h-10 px-4
+                transition duration-300 ease-in-out hover:bg-gradient-to-tr hover:from-oceanBlue hover:via-50% hover:to-aquaGreen">Search</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="w-[80%] mt-6 mb-0 mx-auto" id="tredding">
+            <h3 class="text-pureWhite text-2xl">Trending Movies</h3>
+            <div id="trendingMovies" class="w-full h-auto mt-4 flex overflow-x-auto">
+                <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
+            </div>
+            </div>
+        </section>
+        <section class="w-[80%] mt-6 mb-0 mx-auto" id="tredding">
+            <h3 class="text-pureWhite text-2xl">Trending TV Shows</h3>
+            <div id="trendingTV" class="w-full h-auto mt-4 flex overflow-x-auto">
+                <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/src/js/main.js" type="module"></script>
+</body>
+</html>
