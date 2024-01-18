@@ -5,7 +5,6 @@ module.exports = {
   content: ["./public/*.html"],
   theme: {
     colors: {
-      ...colors,
       'oceanBlue': '#1f7dfe',
       'aquaGreen': '#3ecdbc',
       'deepNavy': '#0e1426',
@@ -26,4 +25,5 @@ module.exports = {
   },
   plugins: [],
 }
+
 

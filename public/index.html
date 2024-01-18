@@ -23,22 +23,51 @@
         </div>
     </header>
     <main>
-        <section class="w-[80%] mt-6 mb-0 mx-auto" id="tredding">
-            <h3 class="text-pureWhite text-2xl">Trending Movies</h3>
-            <div id="trendingMovies" class="w-full h-auto mt-4 flex overflow-x-auto">
+        <section class="w-[80%] mt-6 mb-12 mx-auto" id="tredding">
+            <div class="flex justify-between">
+                <h3 class="text-pureWhite text-2xl">Trending</h3>
+                <div class="flex border-solid border-oceanBlue border-[1px]">
+                    <button id="dayButtonTrendingSection" class="w-20 text-md text-pureWhite gradient-animation">Day</button>
+                    <button id="weekButtonTrendingSection" class="w-20 text-md text-pureWhite  gradient-animation">Week</button>
+                </div>                                            
+            </div>
+            <div id="trendingSection" class="w-full h-auto mt-4 flex overflow-x-auto">
                 <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
             </div>
             </div>
         </section>
-        <section class="w-[80%] mt-6 mb-0 mx-auto" id="tredding">
-            <h3 class="text-pureWhite text-2xl">Trending TV Shows</h3>
-            <div id="trendingTV" class="w-full h-auto mt-4 flex overflow-x-auto">
+        <section class="w-[80%] mt-0 mb-12 mx-auto" id="popular">
+            <div class="flex justify-between">
+                <h3 class="text-pureWhite text-2xl">What's Popular</h3>
+                <div class="flex border-solid border-oceanBlue border-[1px]">
+                    <button id="movieButtonPopularSection" class="w-28 text-md text-pureWhite gradient-animation">Movies</button>
+                    <button id="tvButtonPopularSection" class="w-28 text-md text-pureWhite  gradient-animation">TV Shows</button>
+                </div>                                            
+            </div>
+            <div id="popularSection" class="w-full h-auto mt-4 flex overflow-x-auto">
+                <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
+            </div>
+            </div>
+        </section>
+        <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
+            <div class="flex justify-between">
+                <h3 class="text-pureWhite text-2xl">Top Rated</h3>
+                <div class="flex border-solid border-oceanBlue border-[1px]">
+                    <button id="movieButtonTopRatedSection" class="w-28 text-md text-pureWhite gradient-animation">Movies</button>
+                    <button id="tvButtonTopRatedSection" class="w-28 text-md text-pureWhite  gradient-animation">TV Shows</button>
+                </div>                                            
+            </div>
+            <div id="topRatedSection" class="w-full h-auto mt-4 flex overflow-x-auto">
                 <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
             </div>
             </div>
         </section>
     </main>
+    <footer class="">
 
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="/src/js/main.js" type="module"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active-button-selection {
+    @apply transition ease-in-out delay-150 text-pureWhite font-semibold bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen;
+}
