@@ -5,3 +5,11 @@
 .active-button-selection {
     @apply transition ease-in-out delay-150 text-pureWhite font-semibold bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen;
 }
+
+.active-nav-item{
+    @apply text-oceanBlue font-bold;
+}
+
+.movie-poster{
+    @apply transition ease-in-out duration-300 h-72 mr-5 cursor-pointer hover:border-solid hover:border-aquaGreen hover:border-[1px];
+}

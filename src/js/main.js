@@ -11,58 +11,40 @@ const api = axios.create({
 async function getTrending(time) {
     const {data} = await api(`trending/all/${time}`)
     const results = data.results
-
-    const trendingSection = $('#trendingSection')
-    trendingSection.innerHTML = '';
     
-    results.forEach(media => {
-        const img = document.createElement('img')
-
-        img.classList.add("h-72","mr-5")
-        img.setAttribute('alt',media.title)
-        img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
-        
-        trendingSection.appendChild(img)
-    })
+    renderMoviesPoster(results,'#trendingSection')
 }
 
 
 async function getPopular(media) {
     const {data} = await api(`${media}/popular`)
     const results = data.results
-
-    const trendingSection = $('#popularSection')
-    trendingSection.innerHTML = '';
     
-    results.forEach(media => {
-        const img = document.createElement('img')
-
-        img.classList.add("h-72","mr-5")
-        img.setAttribute('alt',media.title)
-        img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
-        
-        trendingSection.appendChild(img)
-    })
+    renderMoviesPoster(results,'#popularSection')
 }
 
 async function getTopRated(media) {
     const {data} = await api(`${media}/top_rated`)
     const results = data.results
-
-    const trendingSection = $('#topRatedSection')
-    trendingSection.innerHTML = '';
     
+    renderMoviesPoster(results,'#topRatedSection')
+}
+
+function renderMoviesPoster(results,sectionId){
+
+    const section = $(sectionId)
+    section.innerHTML = '';
+
     results.forEach(media => {
         const img = document.createElement('img')
 
-        img.classList.add("h-72","mr-5")
+        img.classList.add("movie-poster")
         img.setAttribute('alt',media.title)
         img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
         
-        trendingSection.appendChild(img)
+        section.appendChild(img)
     })
 }
-
 
 
 function changeTreding(time){
@@ -103,7 +85,6 @@ function changeTopRated(media){
         movieBtnTRS.classList.remove('active-button-selection')
     }
 }
-
 
 
 dayBtnTS.onclick = function() {
