@@ -8,6 +8,19 @@ const api = axios.create({
     }
 });
 
+async function renderBackgroundSite() {
+    const {data} = await api(`trending/movie/week`)
+    const results = data.results
+
+    const indexBackdrop = Math.floor(Math.random()*20);
+
+    const urlImg = `https://image.tmdb.org/t/p/original${results[indexBackdrop].backdrop_path}`
+    
+    const header = $('header')
+    header.style.backgroundImage = `url('${urlImg}')`
+    console.log(header,urlImg)
+}
+
 async function getTrending(time) {
     const {data} = await api(`trending/all/${time}`)
     const results = data.results
@@ -112,6 +125,7 @@ tvBtnTRS.onclick = function() {
 };
 
 (function (){
+    renderBackgroundSite();
     changeTreding('day');
     changePopular('movie');
     changeTopRated('movie');
