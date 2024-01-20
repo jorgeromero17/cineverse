@@ -3,13 +3,66 @@
 @tailwind utilities;
 
 .active-button-selection {
-    @apply transition ease-in-out delay-150 text-pureWhite font-semibold bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen;
+    @apply transition ease-in-out text-pureWhite font-semibold bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen  rounded-3xl;
 }
 
 .active-nav-item{
     @apply text-oceanBlue font-bold;
 }
 
-.movie-poster{
-    @apply transition ease-in-out duration-300 h-72 mr-5 cursor-pointer hover:border-solid hover:border-aquaGreen hover:border-[1px];
+.movie-poster {
+    @apply transition ease-in-out duration-200 h-72 mr-5 cursor-pointer rounded-2xl;
+}
+
+.movie-poster:hover {
+    @apply contrast-125 shadow-md shadow-aquaGreen/20;
+}
+
+.card-genre {
+    @apply h-60 w-[192px] text-pureWhite inline-block mr-5 pb-10 pl-10 pt-10 relative cursor-pointer rounded-3xl;
+}
+
+.card-genre:hover {
+    @apply shadow-md shadow-aquaGreen/20;
+}
+
+.card-genre i {
+    @apply text-7xl drop-shadow-md;
+}
+
+.card-genre p {
+    @apply text-2xl mt-3 drop-shadow-md overflow-clip text-ellipsis;
+}
+
+.bg-genre {
+    @apply bg-gradient-to-tr from-oceanBlueOpacity from-0% via-deepNavy via-30% to-oceanBlue to-100% h-full w-full absolute top-0 left-0 opacity-30 rounded-3xl -z-10 shadow-lg shadow-black;
+}
+
+/* width */
+::-webkit-scrollbar {
+    height: 5px;
+    width: 5px; 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f100;
+    height: 5px;
+    width: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1f7cfe77;
+    border-radius: 30px;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #3ecdbc;
+}
+
+body {
+    scrollbar-color: #3ecdbc #f1f1f100;
+    scrollbar-width:thin;
 }

@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1ca1444e32.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body class="bg-deepNavy font-poppins">
+<body class="bg-deepNavy font-poppins scroll-smooth">
     <nav class="">
         <ul class="w-[80%] my-0 mx-auto py-4 flex items-center justify-between">
             <li class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-lg text-opacity-0 bg-clip-text">AstroFlicks</li>
@@ -21,13 +22,13 @@
             </li>
         </ul>
     </nav>
-    <header class="h-[65vh] bg-cover bg-top">
+    <header id="header1" class="h-[65vh] bg-cover bg-top">
         <div class="h-full flex flex-col justify-center items-center bg-gradient-to-t from-deepNavy via-20% to-deepNavyOpacity">
             <h1 class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-7xl text-opacity-0 bg-clip-text mt-2">Welcome.</h1>
             <h2 class="font-regular text-pureWhite text-2xl mt-2">Millions of movies waiting for you. Explore now and find your next cinematic escape!</h2>
             <div class="flex justify-center w-[100%] mt-8">
-                <input type="text" class="h-10 2xl:w-[40%] m-0 px-3 text-seaGray placeholder:text-mistyGray outline-none" placeholder="Search for a movie..">
-                <button class="text-pureWhite font-semibold text-lg bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen h-10 px-4
+                <input type="text" class="h-11 2xl:w-[40%] m-0 px-3 text-seaGray placeholder:text-mistyGray outline-none rounded-tl-3xl rounded-bl-3xl" placeholder="Search for a movie..">
+                <button class="text-pureWhite font-semibold text-lg bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen h-11 px-4 rounded-tr-3xl rounded-br-3xl
                 transition duration-300 ease-in-out hover:bg-gradient-to-tr hover:from-oceanBlue hover:via-50% hover:to-aquaGreen">Search</button>
             </div>
         </div>
@@ -36,40 +37,52 @@
         <section class="w-[80%] mt-6 mb-12 mx-auto" id="tredding">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">Trending</h3>
-                <div class="flex border-solid border-oceanBlue border-[1px]">
-                    <button id="dayButtonTrendingSection" class="w-20 text-md text-pureWhite gradient-animation">Day</button>
-                    <button id="weekButtonTrendingSection" class="w-20 text-md text-pureWhite  gradient-animation">Week</button>
+                <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
+                    <button id="dayButtonTrendingSection" class="w-20 text-md text-deepNavy">Day</button>
+                    <button id="weekButtonTrendingSection" class="w-20 text-md text-deepNavy">Week</button>
+                    <!-- <div class="absolute z-0 inset-0 bg-pureWhite bg-opacity-75 backdrop-blur-lg rounded-3xl"></div> -->
                 </div>                                            
             </div>
-            <div id="trendingSection" class="w-full h-auto mt-4 flex overflow-x-auto">
+            <div id="trendingSection" class="w-full h-auto mt-4 flex pb-[15px] overflow-hidden hover:overflow-x-scroll hover:pb-[10px]">
                 
-            </div>
             </div>
         </section>
         <section class="w-[80%] mt-0 mb-12 mx-auto" id="popular">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">What's Popular</h3>
-                <div class="flex border-solid border-oceanBlue border-[1px]">
-                    <button id="movieButtonPopularSection" class="w-28 text-md text-pureWhite gradient-animation">Movies</button>
-                    <button id="tvButtonPopularSection" class="w-28 text-md text-pureWhite  gradient-animation">TV Shows</button>
+                <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
+                    <button id="movieButtonPopularSection" class="w-28 text-md text-deepNavy">Movies</button>
+                    <button id="tvButtonPopularSection" class="w-28 text-md text-deepNavy">TV Shows</button>
                 </div>                                            
             </div>
-            <div id="popularSection" class="w-full h-auto mt-4 flex overflow-x-auto">
-                <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
-            </div>
+            <div id="popularSection" class="w-full h-auto mt-4 flex pb-[15px] overflow-hidden hover:overflow-x-scroll hover:pb-[10px]">
+                
             </div>
         </section>
         <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">Top Rated</h3>
-                <div class="flex border-solid border-oceanBlue border-[1px]">
-                    <button id="movieButtonTopRatedSection" class="w-28 text-md text-pureWhite gradient-animation">Movies</button>
-                    <button id="tvButtonTopRatedSection" class="w-28 text-md text-pureWhite  gradient-animation">TV Shows</button>
+                <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
+                    <button id="movieButtonTopRatedSection" class="w-28 text-md text-deepNavy">Movies</button>
+                    <button id="tvButtonTopRatedSection" class="w-28 text-md text-deepNavy">TV Shows</button>
                 </div>                                            
             </div>
-            <div id="topRatedSection" class="w-full h-auto mt-4 flex overflow-x-auto">
+            <div id="topRatedSection" class="w-full h-auto mt-4 flex pb-[15px] overflow-hidden hover:overflow-x-scroll hover:pb-[10px]">
                 <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
             </div>
+        </section>
+        <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
+            <div class="flex">
+                <h3 class="text-pureWhite text-2xl">Genres</h3>                                        
+            </div>
+            <div id="movieGenresSection" class="w-full h-auto mt-4 flex pb-[15px] overflow-hidden hover:overflow-x-scroll hover:pb-[10px]">
+                <div id="genresContainer" class="flex flex-nowrap ">
+                    <!-- <div class="card-genre">
+                        <i class="fa-solid fa-person-rifle"></i>
+                        <p class="">Action</p>
+                        <div class="bg-genre"></div>
+                    </div> -->
+                </div>
             </div>
         </section>
     </main>

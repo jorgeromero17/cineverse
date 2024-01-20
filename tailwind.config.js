@@ -5,7 +5,9 @@ module.exports = {
   content: ["./public/*.html"],
   theme: {
     colors: {
+      ...colors,
       'oceanBlue': '#1f7dfe',
+      'oceanBlueOpacity': 'rgba(31, 125, 254,.3)',
       'aquaGreen': '#3ecdbc',
       'deepNavy': '#0e1426',
       'deepNavyOpacity': 'rgba(14, 20, 38, 0.6)',
@@ -18,9 +20,6 @@ module.exports = {
       poppins: ['Poppins', 'sans-serif'],
     },
     extend: {
-      backgroundImage: {
-        'spiderverse': "url('../public/images/cover.webp')",
-      }
     },
   },
   plugins: [],

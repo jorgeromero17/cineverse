@@ -1,4 +1,4 @@
-import { $,token,dayBtnTS,weekBtnTS,movieBtnPS,tvBtnPS,movieBtnTRS,tvBtnTRS, } from './utilities.js'
+import { $,isFirefox,token,dayBtnTS,weekBtnTS,movieBtnPS,tvBtnPS,movieBtnTRS,tvBtnTRS, } from './utilities.js'
 
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -9,14 +9,14 @@ const api = axios.create({
 });
 
 async function renderBackgroundSite() {
-    const {data} = await api(`trending/movie/week`)
+    const {data} = await api(`movie/popular`)
     const results = data.results
 
     const indexBackdrop = Math.floor(Math.random()*20);
 
     const urlImg = `https://image.tmdb.org/t/p/original${results[indexBackdrop].backdrop_path}`
     
-    const header = $('header')
+    const header = $('#header1')
     header.style.backgroundImage = `url('${urlImg}')`
     console.log(header,urlImg)
 }
@@ -41,6 +41,60 @@ async function getTopRated(media) {
     const results = data.results
     
     renderMoviesPoster(results,'#topRatedSection')
+}
+
+async function getMovieGenres(){
+    const {data} = await api(`/genre/movie/list?language=en`)
+    const genres = data.genres
+
+    const genresContainer = $('#genresContainer')
+
+    genres.forEach( genre => {
+
+        const cardGenre = document.createElement('div')
+        cardGenre.classList.add('card-genre')
+
+        const iconGenre = document.createElement('i')
+        const nameGenre = document.createElement('p')
+        const bgGenre = document.createElement('div')
+
+        nameGenre.innerText = genre.name
+        iconGenre.classList.add('fa-solid',getGenreIconClass(genre.name))
+        bgGenre.classList.add('bg-genre')
+
+        cardGenre.appendChild(iconGenre)
+        cardGenre.appendChild(nameGenre)
+        cardGenre.appendChild(bgGenre)
+
+        genresContainer.appendChild(cardGenre)
+    })
+}
+
+function getGenreIconClass(genreName) {
+    const genreIconMap = {
+        'Action': 'fa-person-rifle',
+        'Adventure': 'fa-compass',
+        'Animation': 'fa-splotch',
+        'Comedy': 'fa-face-grin-squint',
+        'Crime': 'fa-gun',
+        'Documentary': 'fa-file-video',
+        'Drama': 'fa-masks-theater',
+        'Family': 'fa-users',
+        'Fantasy': 'fa-hat-wizard',
+        'History': 'fa-book',
+        'Horror': 'fa-face-flushed',
+        'Music': 'fa-music',
+        'Mystery': 'fa-user-secret',
+        'Romance': 'fa-face-grin-hearts',
+        'Science Fiction': 'fa-atom',
+        'TV Movie': 'fa-desktop',  
+        'Thriller': 'fa-face-frown-open',
+        'War': 'fa-person-military-rifle',
+        'Western': 'fa-hat-cowboy',
+    };    
+
+    // Devuelve la clase de icono correspondiente o una clase predeterminada si no se encuentra
+    return genreIconMap[genreName] || 'fa-film'; //una clase predeterminada si el género no está en el mapa
 }
 
 function renderMoviesPoster(results,sectionId){
@@ -99,6 +153,20 @@ function changeTopRated(media){
     }
 }
 
+function addScrollbarStylingFirefox() {
+    const section = [] 
+    section.push($('#trendingSection'))
+    section.push($('#popularSection'))
+    section.push($('#topRatedSection'))
+    section.push($('#movieGenresSection'))
+
+    section.forEach( s => {
+        if(isFirefox){
+            s.classList.remove('hover:pb-[10px]')
+        }
+    })
+}
+
 
 dayBtnTS.onclick = function() {
     changeTreding('day');
@@ -125,8 +193,10 @@ tvBtnTRS.onclick = function() {
 };
 
 (function (){
-    renderBackgroundSite();
-    changeTreding('day');
-    changePopular('movie');
-    changeTopRated('movie');
+    addScrollbarStylingFirefox()
+    // renderBackgroundSite()
+    // changeTreding('day')
+    // changePopular('movie')
+    // changeTopRated('movie')
+    getMovieGenres()
 })()
