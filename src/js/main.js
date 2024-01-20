@@ -47,8 +47,19 @@ async function getMovieGenres(){
     const {data} = await api(`/genre/movie/list?language=en`)
     const genres = data.genres
 
-    const genresContainer = $('#genresContainer')
+    const genresContainer = $('#movieGenresContainer')
+    renderGenres(genres,genresContainer)
+}
 
+async function getTVGenres(){
+    const {data} = await api(`/genre/tv/list?language=en`)
+    const genres = data.genres
+
+    const genresContainer = $('#tvGenresContainer')
+    renderGenres(genres,genresContainer)
+}
+
+function renderGenres(genres,genresContainer){
     genres.forEach( genre => {
 
         const cardGenre = document.createElement('div')
@@ -72,24 +83,32 @@ async function getMovieGenres(){
 
 function getGenreIconClass(genreName) {
     const genreIconMap = {
+        'Action & Adventure': 'fa-crosshairs',
         'Action': 'fa-person-rifle',
         'Adventure': 'fa-compass',
         'Animation': 'fa-splotch',
         'Comedy': 'fa-face-grin-squint',
+        'Soap': 'fa-soap',
         'Crime': 'fa-gun',
         'Documentary': 'fa-file-video',
         'Drama': 'fa-masks-theater',
         'Family': 'fa-users',
+        'Kids': 'fa-children',
         'Fantasy': 'fa-hat-wizard',
+        'Sci-Fi & Fantasy': 'fa-robot',
         'History': 'fa-book',
         'Horror': 'fa-face-flushed',
         'Music': 'fa-music',
         'Mystery': 'fa-user-secret',
         'Romance': 'fa-face-grin-hearts',
         'Science Fiction': 'fa-atom',
-        'TV Movie': 'fa-desktop',  
+        'TV Movie': 'fa-desktop',
+        'News': 'fa-newspaper', 
+        'Reality': 'fa-users-viewfinder', 
+        'Talk': 'fa-microphone-lines', 
         'Thriller': 'fa-face-frown-open',
         'War': 'fa-person-military-rifle',
+        'War & Politics': 'fa-flag-usa',
         'Western': 'fa-hat-cowboy',
     };    
 
@@ -159,6 +178,7 @@ function addScrollbarStylingFirefox() {
     section.push($('#popularSection'))
     section.push($('#topRatedSection'))
     section.push($('#movieGenresSection'))
+    section.push($('#tvGenresSection'))
 
     section.forEach( s => {
         if(isFirefox){
@@ -199,4 +219,5 @@ tvBtnTRS.onclick = function() {
     // changePopular('movie')
     // changeTopRated('movie')
     getMovieGenres()
+    getTVGenres()
 })()

@@ -674,10 +674,6 @@ video {
   overflow: hidden;
 }
 
-.overflow-x-scroll {
-  overflow-x: scroll;
-}
-
 .scroll-smooth {
   scroll-behavior: smooth;
 }
@@ -795,10 +791,6 @@ video {
 
 .pb-\[15px\] {
   padding-bottom: 15px;
-}
-
-.pb-\[10px\] {
-  padding-bottom: 10px;
 }
 
 .font-poppins {
