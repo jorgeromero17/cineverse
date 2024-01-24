@@ -30,5 +30,12 @@ const goHomeBtn = $('#goHomeBtn')
 const goMoviesBtn = $('#goMoviesBtn')
 const goTVShowsBtn = $('#goTVShowsBtn')
 
+const byGenres = $('#byGenres')
+const filterByGenresSection = $('#filterByGenresSection')
+
+const btnPagPrev = $('#btnPagPrev')
+const btnPagNext = $('#btnPagNext')
+let paginationNumber = 1
+
 
 

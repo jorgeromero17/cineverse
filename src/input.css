@@ -14,7 +14,11 @@
     @apply transition ease-in-out duration-200 h-72 mr-5 cursor-pointer rounded-2xl;
 }
 
-.movie-poster:hover {
+.movie-poster-grid {
+    @apply transition ease-in-out duration-200 h-72 cursor-pointer rounded-2xl;
+}
+
+.movie-poster:hover, .movie-poster-grid:hover {
     @apply contrast-125 shadow-md shadow-aquaGreen/20;
 }
 
@@ -52,6 +56,10 @@
 
 .mediaHeader-btn-info {
     @apply text-pureWhite bg-oceanBlue rounded-2xl px-3 py-2 font-semibold transition ease-in-out hover:scale-105 hover:bg-aquaGreen duration-200;
+}
+
+.bnt-pagination {
+    @apply text-pureWhite bg-oceanBlue rounded-2xl w-20 py-2 font-semibold transition ease-in-out hover:scale-105 hover:bg-aquaGreen duration-200 mx-3;
 }
 
 /* width */

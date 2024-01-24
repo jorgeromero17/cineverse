@@ -51,8 +51,8 @@
     </header>
     <header id="tvHeader" class="h-[70vh] bg-cover bg-top">
     </header>
-    <main>
-        <section class="w-[80%] mt-6 mb-12 mx-auto" id="trending">
+    <main class="w-[80%] mx-auto">
+        <section class="mt-6 mb-12 " id="trending">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">Trending</h3>
                 <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
@@ -65,7 +65,7 @@
                 
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="popular">
+        <section class="mt-0 mb-12" id="popular">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">What's Popular</h3>
                 <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
@@ -77,7 +77,7 @@
                 
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
+        <section class="mt-0 mb-12" id="rated">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">Top Rated</h3>
                 <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
@@ -89,7 +89,7 @@
                 <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="movieGenres">
+        <section class="mt-0 mb-12" id="movieGenres">
             <div class="flex">
                 <h3 class="text-pureWhite text-2xl">Genres</h3>                                        
             </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="tvGenres">
+        <section class="mt-0 mb-12" id="tvGenres">
             <div class="flex">
                 <h3 class="text-pureWhite text-2xl">Genres</h3>                                        
             </div>
@@ -106,6 +106,18 @@
                 <div id="tvGenresContainer" class="flex flex-nowrap ">
                 </div>
             </div>
+        </section>
+        <section id="byGenres" class="mt-6 ">
+            <header class="text-pureWhite text-3xl flex items-center">
+                <button><i class="fa-solid fa-angle-left"></i></button>
+                <h2 id="byGenresTitle" class="ml-8"></h2>
+            </header>
+            <main id="filterByGenresSection" class="mt-6 grid grid-cols-5 grid-rows-4 place-items-center gap-y-5 2xl:w-[80%] 2xl:mx-auto">
+            </main>
+            <aside class="flex justify-center pt-6">
+                <button id="btnPagPrev" class="bnt-pagination"><i class="fa-solid fa-angles-left"></i></button>
+                <button id="btnPagNext" class="bnt-pagination"><i class="fa-solid fa-angles-right"></i></button>
+            </aside>
         </section>
     </main>
     <footer class="">

@@ -3,14 +3,16 @@ window.addEventListener('hashchange',navigator,false)
 
 function navigator() {
 
-    if(location.hash.startsWith('#trends')){
-        console.log('Estoy en TRENDS');
+    paginationNumber = 1;
+
+    if(location.hash.startsWith('#category')){
+        showCategoryPage()
     }
     else if(location.hash.startsWith('#movies')){
         showMoviesPage()
     }
     else if(location.hash.startsWith('#tv-shows')){
-        ShowShowsPage()
+        showShowsPage()
     } else {
         showHomePage()
     }
@@ -51,6 +53,8 @@ function showHomePage() {
     tvHeader.style.display = 'none'
     tvGenres.style.display = 'none'
 
+    byGenres.style.display = 'none'
+
     goHomeBtn.classList.add('active-nav-item')
     goMoviesBtn.classList.remove('active-nav-item')
     goTVShowsBtn.classList.remove('active-nav-item')
@@ -71,16 +75,17 @@ function showMoviesPage() {
     tvHeader.style.display = 'none'
     tvGenres.style.display = 'none'
 
+    byGenres.style.display = 'none'
+
     goHomeBtn.classList.remove('active-nav-item')
     goMoviesBtn.classList.add('active-nav-item')
     goTVShowsBtn.classList.remove('active-nav-item')
 }
 
-function ShowShowsPage() {
+function showShowsPage() {
     getBrackgroundImage('tv','top_rated','#tvHeader',false)
     getTVGenres()  
 
-    
     principalHeader.style.display = 'none'
 
     trending.style.display = 'none'
@@ -93,7 +98,54 @@ function ShowShowsPage() {
     tvHeader.style.display = 'block'
     tvGenres.style.display = 'block'
 
+    byGenres.style.display = 'none'
+
     goHomeBtn.classList.remove('active-nav-item')
     goMoviesBtn.classList.remove('active-nav-item')
     goTVShowsBtn.classList.add('active-nav-item')
 }
+
+function showCategoryPage () {
+
+    showMovieByCategories()
+
+    principalHeader.style.display = 'none'
+
+    trending.style.display = 'none'
+    popular.style.display = 'none'
+    rated.style.display = 'none'
+
+    movieHeader.style.display = 'none'
+    movieGenres.style.display = 'none'
+    
+    tvHeader.style.display = 'none'
+    tvGenres.style.display = 'none'
+
+    byGenres.style.display = 'block'
+
+    goHomeBtn.classList.remove('active-nav-item')
+    goMoviesBtn.classList.remove('active-nav-item')
+    goTVShowsBtn.classList.remove('active-nav-item')
+}
+
+function showMovieByCategories() {
+    let urlDataId = location.hash.split('=')[1]
+    const [genreId,genreName] = urlDataId.split('-')
+
+    const byGenresTitle = $('#byGenresTitle')
+    byGenresTitle.innerText = genreName
+
+    paginationNumber < 2 ? btnPagPrev.style.display = 'none' : btnPagPrev.style.display = 'block'
+
+    getByGenre(paginationNumber,genreId,genreName)
+}
+
+btnPagNext.onclick = function() {
+    paginationNumber++
+    showMovieByCategories()
+};
+
+btnPagPrev.onclick = function() {
+    paginationNumber--
+    showMovieByCategories()
+};

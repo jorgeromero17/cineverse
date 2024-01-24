@@ -33,6 +33,7 @@ async function getBrackgroundImage(media,list,elementId,isHome){ //list: now_pla
     header.style.backgroundImage = `url('${urlImg}')`   
     
     if (isHome) return
+    header.innerHTML = ''
     renderHeader(header,results[indexBackdrop],media)
 }
 
@@ -40,8 +41,6 @@ function renderHeader(header,result,media){
 
     const title = media === 'tv' ? result.name : result.title
     const overview = result.overview
-
-    console.log(result)
 
     const mediaHederContainer = document.createElement('div')
     mediaHederContainer.classList.add('mediaHeader-container')
@@ -75,6 +74,14 @@ function renderHeader(header,result,media){
     div.appendChild(mediaHeaderButton)
 }
 
+async function getPopularFromContry() {
+    //const country = await getCountry()
+    const country = 'SV'
+    
+    const data = await api(`movie/popular?region=${country}`)
+    console.log(data);
+}
+
 async function getTrending(time) {
     const {data} = await api(`trending/all/${time}`)
     const results = data.results
@@ -96,15 +103,16 @@ async function getTopRated(media) {
     renderMoviesPoster(results,'#topRatedSection')
 }
 
-function renderMoviesPoster(results,sectionId){
+function renderMoviesPoster(results,sectionId,isFilterbyGenre){
 
     const section = $(sectionId)
-    section.innerHTML = '';
+    section.innerHTML = ''
 
     results.forEach(media => {
         const img = document.createElement('img')
 
-        img.classList.add("movie-poster")
+        isFilterbyGenre ? img.classList.add("movie-poster-grid") : img.classList.add("movie-poster")
+
         img.setAttribute('alt',media.title)
         img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
         
@@ -132,16 +140,20 @@ function renderGenres(genres,genresContainer){
 
     genresContainer.innerHTML = '';
     genres.forEach( genre => {
+        const {name,id} = genre
 
         const cardGenre = document.createElement('div')
         cardGenre.classList.add('card-genre')
+        cardGenre.addEventListener('click',() => {
+            location.hash = `#category=${id}-${name.split(' ').join('-')}`
+        })
 
         const iconGenre = document.createElement('i')
         const nameGenre = document.createElement('p')
         const bgGenre = document.createElement('div')
 
-        nameGenre.innerText = genre.name
-        iconGenre.classList.add('fa-solid',getGenreIconClass(genre.name))
+        nameGenre.innerText = name
+        iconGenre.classList.add('fa-solid',getGenreIconClass(name))
         bgGenre.classList.add('bg-genre')
 
         cardGenre.appendChild(iconGenre)
@@ -185,6 +197,29 @@ function getGenreIconClass(genreName) {
 
     // Devuelve la clase de icono correspondiente o una clase predeterminada si no se encuentra
     return genreIconMap[genreName] || 'fa-film'; //una clase predeterminada si el género no está en el mapa
+}
+
+async function getCountry(){
+    const request = await fetch("https://ipinfo.io/json?token=8cf754ca5facc9")
+    const data = await request.json()
+
+    return data.country
+}
+
+async function getByGenre(pageNumber,genreId){
+    // ?sort_by=popularity.desc&language=&page=${pageNumber}&with_genres=${genreId}
+    const {data} = await api(`discover/movie`,{
+        params: {
+            sort_by: 'popularity.desc',
+            language: 'en-US',
+            page: pageNumber,
+            with_genres: genreId,
+        }
+    })
+
+    console.info('traje la pagina '+pageNumber);
+
+    renderMoviesPoster(data.results,'#filterByGenresSection',true)
 }
 
 function changeTreding(time){
@@ -268,4 +303,6 @@ tvBtnTRS.onclick = function() {
 
 (function (){
     addScrollbarStylingFirefox()
+    //getCountry()
+    //getPopularFromContry()
 })()
