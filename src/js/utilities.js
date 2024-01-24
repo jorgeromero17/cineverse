@@ -14,5 +14,21 @@ const  tvBtnPS = $('#tvButtonPopularSection')
 const  movieBtnTRS = $('#movieButtonTopRatedSection')
 const  tvBtnTRS = $('#tvButtonTopRatedSection')
 
+const movieHeader = $('#movieHeader')
+const tvHeader = $('#tvHeader')
+const principalHeader = $('#header1')
 
-export { $,isFirefox, apiKey,token,dayBtnTS,weekBtnTS,movieBtnPS,tvBtnPS,movieBtnTRS,tvBtnTRS, };
+const trending = $('#trending')
+const popular = $('#popular')
+const rated = $('#rated')
+
+const movieGenres = $('#movieGenres')
+const tvGenres = $('#tvGenres')
+
+const logoBtn = $('#logoBtn')
+const goHomeBtn = $('#goHomeBtn')
+const goMoviesBtn = $('#goMoviesBtn')
+const goTVShowsBtn = $('#goTVShowsBtn')
+
+
+

@@ -1,4 +1,4 @@
-import { $,isFirefox,token,dayBtnTS,weekBtnTS,movieBtnPS,tvBtnPS,movieBtnTRS,tvBtnTRS, } from './utilities.js'
+// import { $,isFirefox,token,dayBtnTS,weekBtnTS,movieBtnPS,tvBtnPS,movieBtnTRS,tvBtnTRS, } from './utilities.js'
 
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
@@ -8,17 +8,71 @@ const api = axios.create({
     }
 });
 
-async function renderBackgroundSite() {
-    const {data} = await api(`movie/popular`)
-    const results = data.results
+/**
+ * Obtiene la imagen de fondo.
+ *
+ * @param {string} media - Tipo de medio ('tv' o 'movie').
+ * @param {string} list - Lista de opciones disponibles: 'now_playing', 'popular', 'top_rated'.
+ * @param {string} elementId - ID del elemento.
+ * @param {boolean} isHome - Indica si es la página de inicio.
+ * 
+ */
+async function getBrackgroundImage(media,list,elementId,isHome){ //list: now_playing,popular,top_rated
+    const [data1, data2] = await Promise.all([
+        api(`${media}/${list}?page=1`),
+        api(`${media}/${list}?page=2`)
+    ]);
 
-    const indexBackdrop = Math.floor(Math.random()*20);
-
+    const results = [...data1.data.results,...data2.data.results]
+    
+    const indexBackdrop = Math.floor(Math.random()*40);
+    
     const urlImg = `https://image.tmdb.org/t/p/original${results[indexBackdrop].backdrop_path}`
     
-    const header = $('#header1')
-    header.style.backgroundImage = `url('${urlImg}')`
-    console.log(header,urlImg)
+    const header = $(elementId)
+    header.style.backgroundImage = `url('${urlImg}')`   
+    
+    if (isHome) return
+    renderHeader(header,results[indexBackdrop],media)
+}
+
+function renderHeader(header,result,media){
+
+    const title = media === 'tv' ? result.name : result.title
+    const overview = result.overview
+
+    console.log(result)
+
+    const mediaHederContainer = document.createElement('div')
+    mediaHederContainer.classList.add('mediaHeader-container')
+
+    const div = document.createElement('div')
+    div.classList.add('w-[80%]')
+
+    const mediaHeaderTitle = document.createElement('h2')
+    mediaHeaderTitle.classList.add('mediaHeader-title')
+    mediaHeaderTitle.innerText = title
+
+    const mediaHeaderDescription = document.createElement('p')
+    mediaHeaderDescription.classList.add('mediaHeader-description')
+    mediaHeaderDescription.innerText = overview
+
+    const mediaHeaderButton = document.createElement('button')
+    mediaHeaderButton.classList.add('mediaHeader-btn-info')
+    
+    const btnIcon = document.createElement('i')
+    btnIcon.classList.add('fa-solid','fa-circle-info','mr-1')
+
+    const buttonText = document.createTextNode('More Information');
+
+    mediaHeaderButton.appendChild(btnIcon);
+    mediaHeaderButton.appendChild(buttonText);
+
+    header.appendChild(mediaHederContainer)
+    mediaHederContainer.appendChild(div)
+    div.appendChild(mediaHeaderTitle)
+    div.appendChild(mediaHeaderDescription)
+    div.appendChild(mediaHeaderButton)
 }
 
 async function getTrending(time) {
@@ -27,7 +81,6 @@ async function getTrending(time) {
     
     renderMoviesPoster(results,'#trendingSection')
 }
-
 
 async function getPopular(media) {
     const {data} = await api(`${media}/popular`)
@@ -41,6 +94,22 @@ async function getTopRated(media) {
     const results = data.results
     
     renderMoviesPoster(results,'#topRatedSection')
+}
+
+function renderMoviesPoster(results,sectionId){
+
+    const section = $(sectionId)
+    section.innerHTML = '';
+
+    results.forEach(media => {
+        const img = document.createElement('img')
+
+        img.classList.add("movie-poster")
+        img.setAttribute('alt',media.title)
+        img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
+        
+        section.appendChild(img)
+    })
 }
 
 async function getMovieGenres(){
@@ -60,6 +129,8 @@ async function getTVGenres(){
 }
 
 function renderGenres(genres,genresContainer){
+
+    genresContainer.innerHTML = '';
     genres.forEach( genre => {
 
         const cardGenre = document.createElement('div')
@@ -115,23 +186,6 @@ function getGenreIconClass(genreName) {
     // Devuelve la clase de icono correspondiente o una clase predeterminada si no se encuentra
     return genreIconMap[genreName] || 'fa-film'; //una clase predeterminada si el género no está en el mapa
 }
-
-function renderMoviesPoster(results,sectionId){
-
-    const section = $(sectionId)
-    section.innerHTML = '';
-
-    results.forEach(media => {
-        const img = document.createElement('img')
-
-        img.classList.add("movie-poster")
-        img.setAttribute('alt',media.title)
-        img.setAttribute('src','https://image.tmdb.org/t/p/w300/'+media.poster_path)
-        
-        section.appendChild(img)
-    })
-}
-
 
 function changeTreding(time){
 
@@ -214,10 +268,4 @@ tvBtnTRS.onclick = function() {
 
 (function (){
     addScrollbarStylingFirefox()
-    // renderBackgroundSite()
-    // changeTreding('day')
-    // changePopular('movie')
-    // changeTopRated('movie')
-    getMovieGenres()
-    getTVGenres()
 })()

@@ -14,16 +14,16 @@
 <body class="bg-deepNavy font-poppins scroll-smooth">
     <nav class="">
         <ul class="w-[80%] my-0 mx-auto py-4 flex items-center justify-between">
-            <li class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-lg text-opacity-0 bg-clip-text">AstroFlicks</li>
+            <li id="logoBtn" class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-lg text-opacity-0 bg-clip-text cursor-pointer">AstroFlicks</li>
             <li>
-                <a class="text-pureWhite active-nav-item">Home</a>
-                <a class="ml-4  text-pureWhite">Movies</a>
-                <a class="ml-4 text-pureWhite">TV Shows</a>
+                <a id="goHomeBtn" class="text-pureWhite cursor-pointer">Home</a>
+                <a id="goMoviesBtn" class="ml-4 text-pureWhite cursor-pointer">Movies</a>
+                <a id="goTVShowsBtn" class="ml-4 text-pureWhite cursor-pointer">TV Shows</a>
             </li>
         </ul>
     </nav>
-    <header id="header1" class="h-[65vh] bg-cover bg-top">
-        <div class="h-full flex flex-col justify-center items-center bg-gradient-to-t from-deepNavy via-20% to-deepNavyOpacity">
+    <header id="header1" class="h-[70vh] bg-cover bg-top">
+        <div class="h-full flex flex-col justify-center items-center bg-gradient-to-t from-deepNavy via-20% to-deepNavy/60">
             <h1 class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-7xl text-opacity-0 bg-clip-text mt-2">Welcome.</h1>
             <h2 class="font-regular text-pureWhite text-2xl mt-2">Millions of movies waiting for you. Explore now and find your next cinematic escape!</h2>
             <div class="flex justify-center w-[100%] mt-8">
@@ -33,8 +33,26 @@
             </div>
         </div>
     </header>
+    <header id="movieHeader" class="h-[70vh] bg-cover bg-top">
+        <!-- <div class="mediaHeader-container">
+            <div class="w-[80%]">
+                <h2 class="mediaHeader-title">
+                    Spider-Man: A través del Spider-Verso
+                </h2>
+                <p class="mediaHeader-description">Después de reunirse con Gwen Stacy, el amigable vecino de tiempo completo de Brooklyn Spiderman, es lanzado a través del multiverso,
+                    donde se encuentra a un equipo de gente araña encomendada con proteger su mera existencia.
+                </p>
+                <button class="mediaHeader-btn-info">
+                    <i class="fa-solid fa-circle-info mr-1"></i>
+                    More Information
+                </button>
+            </div>
+        </div> -->
+    </header>
+    <header id="tvHeader" class="h-[70vh] bg-cover bg-top">
+    </header>
     <main>
-        <section class="w-[80%] mt-6 mb-12 mx-auto" id="tredding">
+        <section class="w-[80%] mt-6 mb-12 mx-auto" id="trending">
             <div class="flex justify-between">
                 <h3 class="text-pureWhite text-2xl">Trending</h3>
                 <div class="flex border-solid border-oceanBlue bg-pureWhite rounded-3xl p-[2px]">
@@ -71,7 +89,7 @@
                 <!-- <img class="h-72 mr-5" src="./images/img1.jpg" alt=""> -->
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
+        <section class="w-[80%] mt-0 mb-12 mx-auto" id="movieGenres">
             <div class="flex">
                 <h3 class="text-pureWhite text-2xl">Genres</h3>                                        
             </div>
@@ -80,7 +98,7 @@
                 </div>
             </div>
         </section>
-        <section class="w-[80%] mt-0 mb-12 mx-auto" id="rated">
+        <section class="w-[80%] mt-0 mb-12 mx-auto" id="tvGenres">
             <div class="flex">
                 <h3 class="text-pureWhite text-2xl">Genres</h3>                                        
             </div>
@@ -95,7 +113,8 @@
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="/src/js/main.js" type="module"></script>
-    <script src="/src/js/navigation.js" type="module"></script>
+    <script src="/src/js/utilities.js"></script>
+    <script src="/src/js/main.js"></script>
+    <script src="/src/js/navigation.js"></script>
 </body>
 </html>
