@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1ca1444e32.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>AstroFlicks</title>
 </head>
 <body class="bg-deepNavy font-poppins scroll-smooth">
     <nav class="">
@@ -25,12 +25,12 @@
     <header id="header1" class="h-[70vh] bg-cover bg-top">
         <div class="h-full flex flex-col justify-center items-center bg-gradient-to-t from-deepNavy via-20% to-deepNavy/60">
             <h1 class="inline-block bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen font-bold text-pureWhite text-7xl text-opacity-0 bg-clip-text mt-2">Welcome.</h1>
-            <h2 class="font-regular text-pureWhite text-2xl mt-2">Millions of movies waiting for you. Explore now and find your next cinematic escape!</h2>
-            <div class="flex justify-center w-[100%] mt-8">
-                <input type="text" class="h-11 2xl:w-[40%] m-0 px-3 text-seaGray placeholder:text-mistyGray outline-none rounded-tl-3xl rounded-bl-3xl" placeholder="Search for a movie..">
-                <button class="text-pureWhite font-semibold text-lg bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen h-11 px-4 rounded-tr-3xl rounded-br-3xl
+            <h2 class="font-regular text-pureWhite text-2xl mt-2">Millions of flicks waiting for you. Explore now and find your next cinematic escape!</h2>
+            <form class="flex justify-center w-[100%] mt-8">
+                <input id="searchInput" type="text" class="h-11 2xl:w-[40%] m-0 px-3 text-seaGray placeholder:text-mistyGray outline-none rounded-tl-3xl rounded-bl-3xl" placeholder="Search for a movie..">
+                <button id="searchBtn" class="text-pureWhite font-semibold text-lg bg-gradient-to-r from-oceanBlue via-50% to-aquaGreen h-11 px-4 rounded-tr-3xl rounded-br-3xl
                 transition duration-300 ease-in-out hover:bg-gradient-to-tr hover:from-oceanBlue hover:via-50% hover:to-aquaGreen">Search</button>
-            </div>
+            </from>
         </div>
     </header>
     <header id="movieHeader" class="h-[70vh] bg-cover bg-top">
@@ -109,10 +109,10 @@
         </section>
         <section id="byGenres" class="mt-6 ">
             <header class="text-pureWhite text-3xl flex items-center">
-                <button><i class="fa-solid fa-angle-left"></i></button>
+                <button id="byGenresBackBtn"><i class="fa-solid fa-angle-left"></i></button>
                 <h2 id="byGenresTitle" class="ml-8"></h2>
             </header>
-            <main id="filterByGenresSection" class="mt-6 grid grid-cols-5 grid-rows-4 place-items-center gap-y-5 2xl:w-[80%] 2xl:mx-auto">
+            <main id="filterByGenresSection" class="mt-6 grid grid-cols-5 place-items-center gap-y-5 2xl:w-[80%] 2xl:mx-auto">
             </main>
             <aside class="flex justify-center pt-6">
                 <button id="btnPagPrev" class="bnt-pagination"><i class="fa-solid fa-angles-left"></i></button>

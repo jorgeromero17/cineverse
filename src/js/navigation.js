@@ -13,7 +13,11 @@ function navigator() {
     }
     else if(location.hash.startsWith('#tv-shows')){
         showShowsPage()
-    } else {
+    }
+    else if(location.hash.startsWith('#search')){
+        showSearchPage()
+    }
+    else {
         showHomePage()
     }
 }
@@ -25,7 +29,6 @@ goHomeBtn.onclick = function() {
 logoBtn.onclick = function() {
     location.hash = ''
 }
-
 
 goMoviesBtn.onclick = function() {
     location.hash = '#movies'
@@ -61,7 +64,7 @@ function showHomePage() {
 }
 function showMoviesPage() {
     getBrackgroundImage('movie','now_playing','#movieHeader',false)   
-    getMovieGenres()
+    getGenres('movie')
 
     principalHeader.style.display = 'none'
 
@@ -84,7 +87,7 @@ function showMoviesPage() {
 
 function showShowsPage() {
     getBrackgroundImage('tv','top_rated','#tvHeader',false)
-    getTVGenres()  
+    getGenres('tv')  
 
     principalHeader.style.display = 'none'
 
@@ -107,7 +110,7 @@ function showShowsPage() {
 
 function showCategoryPage () {
 
-    showMovieByCategories()
+    showMediaByCategories()
 
     principalHeader.style.display = 'none'
 
@@ -128,24 +131,79 @@ function showCategoryPage () {
     goTVShowsBtn.classList.remove('active-nav-item')
 }
 
-function showMovieByCategories() {
-    let urlDataId = location.hash.split('=')[1]
-    const [genreId,genreName] = urlDataId.split('-')
+function showSearchPage() {
+
+    showMediaByCategories(true)
+
+    principalHeader.style.display = 'none'
+
+    trending.style.display = 'none'
+    popular.style.display = 'none'
+    rated.style.display = 'none'
+
+    movieHeader.style.display = 'none'
+    movieGenres.style.display = 'none'
+    
+    tvHeader.style.display = 'none'
+    tvGenres.style.display = 'none'
+
+    byGenres.style.display = 'block'
+
+    goHomeBtn.classList.remove('active-nav-item')
+    goMoviesBtn.classList.remove('active-nav-item')
+    goTVShowsBtn.classList.remove('active-nav-item')
+
+
+}
+
+function showMediaByCategories(isSearching) {
 
     const byGenresTitle = $('#byGenresTitle')
-    byGenresTitle.innerText = genreName
+
+    if(isSearching){
+        let urlData = location.hash.split('=')[1]
+        const query = urlData.split('-').join(' ')
+       
+        byGenresTitle.innerText = query
+
+        getMediaBySearch(paginationNumber,query)
+    } else {
+        let urlData = location.hash.split('=')[1]
+        const genreId = urlData.split('-')[0]
+        //retorna un array dividiendo cuando encuentra guiones, quita el id y devuelve un array sin el y al final lo une en un string con spacio
+        const genreName = urlData.split('-').slice(1).join(' ') 
+
+        byGenresTitle.innerText = genreName
+
+        getByGenre(paginationNumber,genreId,genreName)
+    }
 
     paginationNumber < 2 ? btnPagPrev.style.display = 'none' : btnPagPrev.style.display = 'block'
-
-    getByGenre(paginationNumber,genreId,genreName)
+    
 }
 
 btnPagNext.onclick = function() {
     paginationNumber++
-    showMovieByCategories()
+
+    location.hash.startsWith('#search') ? showMediaByCategories(true) : showMediaByCategories(false)
+
+    window.scroll(0,0)
 };
 
 btnPagPrev.onclick = function() {
     paginationNumber--
-    showMovieByCategories()
+    
+    location.hash.startsWith('#search') ? showMediaByCategories(true) : showMediaByCategories(false)
+
+    window.scroll(0,0)
 };
+
+searchBtn.onclick = function () {
+    searchingUrl = searchInput.value.split(' ').join('-')
+    location.hash = 'search='+searchingUrl
+    searchInput.value = '';
+}
+
+byGenresBackBtn.onclick = () => {
+    window.history.back()
+}

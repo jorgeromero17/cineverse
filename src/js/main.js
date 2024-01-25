@@ -120,23 +120,15 @@ function renderMoviesPoster(results,sectionId,isFilterbyGenre){
     })
 }
 
-async function getMovieGenres(){
-    const {data} = await api(`/genre/movie/list?language=en`)
+async function getGenres(media){
+    const {data} = await api(`/genre/${media}/list?language=en`)
     const genres = data.genres
 
-    const genresContainer = $('#movieGenresContainer')
-    renderGenres(genres,genresContainer)
+    const genresContainer = media === 'movie' ? $('#movieGenresContainer') : $('#tvGenresContainer')
+    renderGenres(genres,genresContainer,media)
 }
 
-async function getTVGenres(){
-    const {data} = await api(`/genre/tv/list?language=en`)
-    const genres = data.genres
-
-    const genresContainer = $('#tvGenresContainer')
-    renderGenres(genres,genresContainer)
-}
-
-function renderGenres(genres,genresContainer){
+function renderGenres(genres,genresContainer,media){
 
     genresContainer.innerHTML = '';
     genres.forEach( genre => {
@@ -144,8 +136,10 @@ function renderGenres(genres,genresContainer){
 
         const cardGenre = document.createElement('div')
         cardGenre.classList.add('card-genre')
+        cardGenre.setAttribute('data-type', media);
         cardGenre.addEventListener('click',() => {
             location.hash = `#category=${id}-${name.split(' ').join('-')}`
+            genreOf = media
         })
 
         const iconGenre = document.createElement('i')
@@ -208,7 +202,8 @@ async function getCountry(){
 
 async function getByGenre(pageNumber,genreId){
     // ?sort_by=popularity.desc&language=&page=${pageNumber}&with_genres=${genreId}
-    const {data} = await api(`discover/movie`,{
+    const media = genreOf
+    const {data} = await api(`discover/${media}`,{
         params: {
             sort_by: 'popularity.desc',
             language: 'en-US',
@@ -217,10 +212,26 @@ async function getByGenre(pageNumber,genreId){
         }
     })
 
-    console.info('traje la pagina '+pageNumber);
-
     renderMoviesPoster(data.results,'#filterByGenresSection',true)
 }
+
+async function getMediaBySearch(pageNumber,query) {
+    
+    console.log(query);
+    const { data } = await api(`search/multi`,{
+        params: {
+            query,
+            language: 'en-US',
+            page: pageNumber,
+        },
+    })
+    const results = data.results.filter((result) => {
+        return result.media_type !== 'person';
+    });
+
+    renderMoviesPoster(results,'#filterByGenresSection',true)
+}
+
 
 function changeTreding(time){
 

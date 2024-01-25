@@ -32,10 +32,15 @@ const goTVShowsBtn = $('#goTVShowsBtn')
 
 const byGenres = $('#byGenres')
 const filterByGenresSection = $('#filterByGenresSection')
+let genreOf = ''
+const byGenresBackBtn = $('#byGenresBackBtn')
 
 const btnPagPrev = $('#btnPagPrev')
 const btnPagNext = $('#btnPagNext')
 let paginationNumber = 1
+
+const searchBtn = $('#searchBtn')
+const searchInput = $('#searchInput')
 
 
 
